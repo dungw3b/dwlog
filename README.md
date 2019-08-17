@@ -1,2 +1,2 @@
 # dwlog
-Log service in Go, it uses NATS for send or receive message
+Log service in Go, it uses NATS for sending and receiving message
