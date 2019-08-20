@@ -1,3 +1,9 @@
+/*
+* @project  dwlog
+* @file     client.go
+* @author   dungw3b
+* @date     2019-08-20
+*/
 package main
 
 import (

@@ -1,3 +1,9 @@
+/*
+* @project  dwlog
+* @file     main.go
+* @author   from go-log
+* @date     2019-08-20
+*/
 package dwlog
 
 import (
