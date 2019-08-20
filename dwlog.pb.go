@@ -24,8 +24,8 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type Message struct {
-	App                  string   `protobuf:"bytes,1,opt,name=app,proto3" json:"app,omitempty"`
+type MessageRequest struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Host                 string   `protobuf:"bytes,2,opt,name=host,proto3" json:"host,omitempty"`
 	Time                 string   `protobuf:"bytes,3,opt,name=time,proto3" json:"time,omitempty"`
 	Level                uint32   `protobuf:"varint,4,opt,name=level,proto3" json:"level,omitempty"`
@@ -35,99 +35,99 @@ type Message struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Message) Reset()         { *m = Message{} }
-func (m *Message) String() string { return proto.CompactTextString(m) }
-func (*Message) ProtoMessage()    {}
-func (*Message) Descriptor() ([]byte, []int) {
+func (m *MessageRequest) Reset()         { *m = MessageRequest{} }
+func (m *MessageRequest) String() string { return proto.CompactTextString(m) }
+func (*MessageRequest) ProtoMessage()    {}
+func (*MessageRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4542e3f1ac27857f, []int{0}
 }
 
-func (m *Message) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Message.Unmarshal(m, b)
+func (m *MessageRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_MessageRequest.Unmarshal(m, b)
 }
-func (m *Message) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Message.Marshal(b, m, deterministic)
+func (m *MessageRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_MessageRequest.Marshal(b, m, deterministic)
 }
-func (m *Message) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Message.Merge(m, src)
+func (m *MessageRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MessageRequest.Merge(m, src)
 }
-func (m *Message) XXX_Size() int {
-	return xxx_messageInfo_Message.Size(m)
+func (m *MessageRequest) XXX_Size() int {
+	return xxx_messageInfo_MessageRequest.Size(m)
 }
-func (m *Message) XXX_DiscardUnknown() {
-	xxx_messageInfo_Message.DiscardUnknown(m)
+func (m *MessageRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_MessageRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Message proto.InternalMessageInfo
+var xxx_messageInfo_MessageRequest proto.InternalMessageInfo
 
-func (m *Message) GetApp() string {
+func (m *MessageRequest) GetName() string {
 	if m != nil {
-		return m.App
+		return m.Name
 	}
 	return ""
 }
 
-func (m *Message) GetHost() string {
+func (m *MessageRequest) GetHost() string {
 	if m != nil {
 		return m.Host
 	}
 	return ""
 }
 
-func (m *Message) GetTime() string {
+func (m *MessageRequest) GetTime() string {
 	if m != nil {
 		return m.Time
 	}
 	return ""
 }
 
-func (m *Message) GetLevel() uint32 {
+func (m *MessageRequest) GetLevel() uint32 {
 	if m != nil {
 		return m.Level
 	}
 	return 0
 }
 
-func (m *Message) GetMessage() string {
+func (m *MessageRequest) GetMessage() string {
 	if m != nil {
 		return m.Message
 	}
 	return ""
 }
 
-type Response struct {
+type MessageResponse struct {
 	Result               bool     `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Response) Reset()         { *m = Response{} }
-func (m *Response) String() string { return proto.CompactTextString(m) }
-func (*Response) ProtoMessage()    {}
-func (*Response) Descriptor() ([]byte, []int) {
+func (m *MessageResponse) Reset()         { *m = MessageResponse{} }
+func (m *MessageResponse) String() string { return proto.CompactTextString(m) }
+func (*MessageResponse) ProtoMessage()    {}
+func (*MessageResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4542e3f1ac27857f, []int{1}
 }
 
-func (m *Response) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Response.Unmarshal(m, b)
+func (m *MessageResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_MessageResponse.Unmarshal(m, b)
 }
-func (m *Response) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Response.Marshal(b, m, deterministic)
+func (m *MessageResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_MessageResponse.Marshal(b, m, deterministic)
 }
-func (m *Response) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Response.Merge(m, src)
+func (m *MessageResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MessageResponse.Merge(m, src)
 }
-func (m *Response) XXX_Size() int {
-	return xxx_messageInfo_Response.Size(m)
+func (m *MessageResponse) XXX_Size() int {
+	return xxx_messageInfo_MessageResponse.Size(m)
 }
-func (m *Response) XXX_DiscardUnknown() {
-	xxx_messageInfo_Response.DiscardUnknown(m)
+func (m *MessageResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MessageResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Response proto.InternalMessageInfo
+var xxx_messageInfo_MessageResponse proto.InternalMessageInfo
 
-func (m *Response) GetResult() bool {
+func (m *MessageResponse) GetResult() bool {
 	if m != nil {
 		return m.Result
 	}
@@ -135,26 +135,27 @@ func (m *Response) GetResult() bool {
 }
 
 func init() {
-	proto.RegisterType((*Message)(nil), "dwlog.Message")
-	proto.RegisterType((*Response)(nil), "dwlog.Response")
+	proto.RegisterType((*MessageRequest)(nil), "dwlog.MessageRequest")
+	proto.RegisterType((*MessageResponse)(nil), "dwlog.MessageResponse")
 }
 
 func init() { proto.RegisterFile("dwlog.proto", fileDescriptor_4542e3f1ac27857f) }
 
 var fileDescriptor_4542e3f1ac27857f = []byte{
-	// 188 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x34, 0x8f, 0x3d, 0xcb, 0xc2, 0x30,
-	0x14, 0x85, 0xdf, 0xbe, 0xfd, 0xf4, 0x8a, 0x1f, 0x5c, 0x44, 0x82, 0x53, 0xc9, 0xd4, 0xa9, 0x82,
-	0xce, 0xce, 0x2e, 0xba, 0xc4, 0x5f, 0x50, 0xf5, 0x52, 0x0b, 0xa9, 0x09, 0x4d, 0xac, 0x7f, 0x5f,
-	0x9a, 0xb4, 0xdb, 0x79, 0x1e, 0xc2, 0xc9, 0x3d, 0x30, 0x7f, 0x7e, 0xa5, 0xaa, 0x4b, 0xdd, 0x29,
-	0xab, 0x30, 0x76, 0xc0, 0x0d, 0xa4, 0x57, 0x32, 0xa6, 0xaa, 0x09, 0xd7, 0x10, 0x56, 0x5a, 0xb3,
-	0x20, 0x0f, 0x8a, 0x99, 0x18, 0x22, 0x22, 0x44, 0x2f, 0x65, 0x2c, 0xfb, 0x77, 0xca, 0xe5, 0xc1,
-	0xd9, 0xa6, 0x25, 0x16, 0x7a, 0x37, 0x64, 0xdc, 0x40, 0x2c, 0xa9, 0x27, 0xc9, 0xa2, 0x3c, 0x28,
-	0x16, 0xc2, 0x03, 0x32, 0x48, 0x5b, 0x5f, 0xcd, 0x62, 0xf7, 0x78, 0x42, 0xce, 0x21, 0x13, 0x64,
-	0xb4, 0x7a, 0x1b, 0xc2, 0x2d, 0x24, 0x1d, 0x99, 0x8f, 0xb4, 0xee, 0xe3, 0x4c, 0x8c, 0x74, 0x38,
-	0x01, 0x5c, 0x54, 0x7d, 0xa3, 0xae, 0x6f, 0x1e, 0x84, 0x7b, 0x80, 0x33, 0xd9, 0xe9, 0xd2, 0x65,
-	0xe9, 0x97, 0x8c, 0xbc, 0x5b, 0x8d, 0x3c, 0x95, 0xf2, 0xbf, 0x7b, 0xe2, 0x56, 0x1e, 0x7f, 0x01,
-	0x00, 0x00, 0xff, 0xff, 0xb8, 0xe0, 0x17, 0xa5, 0xf4, 0x00, 0x00, 0x00,
+	// 199 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4e, 0x29, 0xcf, 0xc9,
+	0x4f, 0xd7, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x05, 0x73, 0x94, 0x6a, 0xb8, 0xf8, 0x7c,
+	0x53, 0x8b, 0x8b, 0x13, 0xd3, 0x53, 0x83, 0x52, 0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0x84, 0x84, 0xb8,
+	0x58, 0xf2, 0x12, 0x73, 0x53, 0x25, 0x18, 0x15, 0x18, 0x35, 0x38, 0x83, 0xc0, 0x6c, 0x90, 0x58,
+	0x46, 0x7e, 0x71, 0x89, 0x04, 0x13, 0x44, 0x0c, 0xc4, 0x06, 0x89, 0x95, 0x64, 0xe6, 0xa6, 0x4a,
+	0x30, 0x43, 0xc4, 0x40, 0x6c, 0x21, 0x11, 0x2e, 0xd6, 0x9c, 0xd4, 0xb2, 0xd4, 0x1c, 0x09, 0x16,
+	0x05, 0x46, 0x0d, 0xde, 0x20, 0x08, 0x47, 0x48, 0x82, 0x8b, 0x3d, 0x17, 0x62, 0x87, 0x04, 0x2b,
+	0x58, 0x31, 0x8c, 0xab, 0xa4, 0xc9, 0xc5, 0x0f, 0xb7, 0xbd, 0xb8, 0x20, 0x3f, 0xaf, 0x38, 0x55,
+	0x48, 0x8c, 0x8b, 0xad, 0x28, 0xb5, 0xb8, 0x34, 0xa7, 0x04, 0xec, 0x00, 0x8e, 0x20, 0x28, 0xcf,
+	0xc8, 0x85, 0x8b, 0xcb, 0x27, 0x3f, 0x3d, 0x38, 0xb5, 0xa8, 0x2c, 0x33, 0x39, 0x55, 0xc8, 0x8c,
+	0x8b, 0xd9, 0x27, 0x3f, 0x5d, 0x48, 0x54, 0x0f, 0xe2, 0x25, 0x54, 0x2f, 0x48, 0x89, 0xa1, 0x0b,
+	0x43, 0xcc, 0x56, 0x62, 0x48, 0x62, 0x03, 0x7b, 0xde, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0xe8,
+	0x39, 0xcc, 0xba, 0x0b, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -169,7 +170,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type LogServiceClient interface {
-	GetMessage(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Response, error)
+	Log(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error)
 }
 
 type logServiceClient struct {
@@ -180,9 +181,9 @@ func NewLogServiceClient(cc *grpc.ClientConn) LogServiceClient {
 	return &logServiceClient{cc}
 }
 
-func (c *logServiceClient) GetMessage(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
-	err := c.cc.Invoke(ctx, "/dwlog.LogService/GetMessage", in, out, opts...)
+func (c *logServiceClient) Log(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error) {
+	out := new(MessageResponse)
+	err := c.cc.Invoke(ctx, "/dwlog.LogService/Log", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -191,35 +192,35 @@ func (c *logServiceClient) GetMessage(ctx context.Context, in *Message, opts ...
 
 // LogServiceServer is the server API for LogService service.
 type LogServiceServer interface {
-	GetMessage(context.Context, *Message) (*Response, error)
+	Log(context.Context, *MessageRequest) (*MessageResponse, error)
 }
 
 // UnimplementedLogServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedLogServiceServer struct {
 }
 
-func (*UnimplementedLogServiceServer) GetMessage(ctx context.Context, req *Message) (*Response, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMessage not implemented")
+func (*UnimplementedLogServiceServer) Log(ctx context.Context, req *MessageRequest) (*MessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Log not implemented")
 }
 
 func RegisterLogServiceServer(s *grpc.Server, srv LogServiceServer) {
 	s.RegisterService(&_LogService_serviceDesc, srv)
 }
 
-func _LogService_GetMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Message)
+func _LogService_Log_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MessageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LogServiceServer).GetMessage(ctx, in)
+		return srv.(LogServiceServer).Log(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/dwlog.LogService/GetMessage",
+		FullMethod: "/dwlog.LogService/Log",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LogServiceServer).GetMessage(ctx, req.(*Message))
+		return srv.(LogServiceServer).Log(ctx, req.(*MessageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -229,8 +230,8 @@ var _LogService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*LogServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetMessage",
-			Handler:    _LogService_GetMessage_Handler,
+			MethodName: "Log",
+			Handler:    _LogService_Log_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

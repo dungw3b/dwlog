@@ -1,2 +1,3 @@
 # dwlog
-Log service in Go, it uses NATS for sending and receiving message
+Log service developed in Go, it is very fast in sending message log since used channel with non-blocking sender
+It also uses gRPC as communication protocol

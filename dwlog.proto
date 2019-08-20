@@ -3,17 +3,17 @@ syntax = "proto3";
 package dwlog;
 
 service LogService {
-    rpc GetMessage(Message) returns (Response) {}
+    rpc Log(MessageRequest) returns (MessageResponse) {}
 }
 
-message Message {
-    string app = 1;
+message MessageRequest {
+    string name = 1;
     string host = 2;
     string time = 3;
     uint32 level = 4;
     string message = 5;
 }
 
-message Response {
+message MessageResponse {
     bool result = 1;
 }
