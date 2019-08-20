@@ -45,10 +45,10 @@ func (s *Server) Log(ctx context.Context, m *MessageRequest) (*MessageResponse, 
 	_, err := writer.Write(line)
 	if err != nil {
 		fmt.Println("\033[31mWrite data into file error\033[0m", err.Error())
-		return &MessageResponse{Result: false}, nil
+		return &MessageResponse{}, nil
 	}
 
-	return &MessageResponse{Result: true}, nil
+	return &MessageResponse{}, nil
 }
 
 func (s *Server) TextFormat(m *MessageRequest) []byte {
