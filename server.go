@@ -10,7 +10,6 @@ import (
 	"os"
 	"fmt"
 	"net"
-	"time"
 	"sync"
 	"context"
 	"strconv"
@@ -23,7 +22,8 @@ type Server struct {
 	FileCount uint32
 	Data string
 
-	mux *sync.Mutex
+	mux sync.Mutex
+	grpcServer *grpc.Server
 }
 
 func (s *Server) Log(ctx context.Context, m *MessageRequest) (*MessageResponse, error) {
@@ -65,36 +65,36 @@ func (s *Server) CSVFormat(m *MessageRequest) []byte {
 	return []byte(csv)
 }
 
-func (s *Server) Run() error {
-	var (
-		hostname, port, info string
-	)
+func (s *Server) Run(exit chan bool) {
+	var port string
 	if len(s.Listen) == 0 {
-		return fmt.Errorf("service.listen is required")
+		fmt.Println("service.listen is required")
+		exit <- true
 	}
 	if s.Port == 0 {
-		return fmt.Errorf("service.port is required")
+		fmt.Println("service.port is required")
+		exit <- true
 	}
 	if len(s.Data) == 0 {
 		s.Data = "./"
 	}
-	s.mux = &sync.Mutex{}
-
 	port = strconv.Itoa(int(s.Port))
 	listen, err := net.Listen("tcp", s.Listen +":"+ port)
 	if err != nil {
-		return err
+		fmt.Println(err)
+		exit <- true
 	}
 
-	hostname,_ = os.Hostname()
-	info = "["+ time.Now().Format("2006-01-02 15:04:05") +"]"
-	info = info + "["+ hostname +"]"
-	info = info + "[\033[32mINFO\033[0m]"
-	info = info + " Service dwlog started on "+ s.Listen +":"+ port
-	fmt.Println(info)
+	s.grpcServer = grpc.NewServer()
+	RegisterLogServiceServer(s.grpcServer, s)
+	logConsole(INFO, "Service dwlog start on", s.Listen+":"+port)
+	if err := s.grpcServer.Serve(listen); err != nil {
+		fmt.Println(err)
+		exit <- true
+	}
+}
 
-	grpcServer := grpc.NewServer()
-	RegisterLogServiceServer(grpcServer, s)
-	grpcServer.Serve(listen)
-	return nil
+func (s *Server) Close() {
+	s.grpcServer.GracefulStop()
+	logConsole(INFO, "Graceful stop service dwlog")
 }

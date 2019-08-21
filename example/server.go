@@ -8,8 +8,10 @@ package main
 
 import (
 	"os"
+	"os/signal"
 	"fmt"
 	"flag"
+	"syscall"
 	"io/ioutil"
 	"github.com/olebedev/config"
 	"github.com/dungw3b/dwlog"
@@ -44,7 +46,18 @@ func init() {
 }
 
 func main() {
-	if err := App.Run(); err != nil {
-		fmt.Println(err)
-	}
+	signalChan := make(chan os.Signal, 1)
+	exitChan := make(chan bool)
+	signal.Notify(signalChan)
+	signal.Ignore(syscall.SIGHUP)
+
+	go App.Run(exitChan)
+
+	// Signal manager
+	go func() {
+		<- signalChan
+		App.Close()
+		exitChan <- true
+	}()
+	<- exitChan
 }

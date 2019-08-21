@@ -134,3 +134,17 @@ func (log *DWLog) Close() {
 	log.nbchan.Send <- nil
 	fmt.Println("log closed")
 }
+
+func logConsole(level Level, str ...string) {
+	host,_ := os.Hostname()
+	time := time.Now().Format("2006-01-02 15:04:05")
+	var message string
+	message = "["+ time +"]"+
+			"["+ host +"]"+
+			"["+ level.ColorString() +"]"
+	for _,i := range str {
+		message = message +" "+ i
+	}
+		
+	fmt.Println(message)
+}
