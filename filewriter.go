@@ -1,6 +1,6 @@
 /*
 * @project  dwlog
-* @file     main.go
+* @file     filewriter.go
 * @author   from go-log
 * @date     2019-08-20
 */

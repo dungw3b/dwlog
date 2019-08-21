@@ -1,6 +1,6 @@
 /*
 * @project  dwlog
-* @file     main.go
+* @file     dwlog.go
 * @author   dungw3b
 * @date     2019-08-20
 */
