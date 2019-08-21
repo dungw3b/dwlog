@@ -4,5 +4,4 @@
 *.go text eol=lf
 *.sh text eol=lf
 
-bin/* linguist-documentation
 example/* linguist-documentation

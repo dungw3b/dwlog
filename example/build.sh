@@ -10,7 +10,7 @@ GOBIN=$GOPATH/bin
 rm -f bin/*
 env GOPATH=$GOPATH go clean
 
-platforms=("linux/amd64")
+platforms=("linux/amd64" "windows/amd64")
  
 for platform in "${platforms[@]}"
 do
