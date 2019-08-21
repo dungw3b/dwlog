@@ -8,6 +8,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 	"github.com/dungw3b/dwlog"
 )
 
@@ -22,9 +23,12 @@ func main() {
 	}
 	defer log.Close()
 
-	log.Error("error1 ", "error2 ", "error3 ")
-	log.Info("info1 ", "info2 ", "info3 ")
-	log.Debug("debug1 ", "debug2 ", "debug3 ")
+	for {
+		log.Error("error1 ", "error2 ", "error3 ")
+		log.Info("info1 ", "info2 ", "info3 ")
+		log.Debug("debug1 ", "debug2 ", "debug3 ")
+		time.Sleep(time.Second)
+	}
 	
 	select{}
 }

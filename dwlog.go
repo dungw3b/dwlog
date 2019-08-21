@@ -33,7 +33,7 @@ func (log *DWLog) Connect() error {
 		return fmt.Errorf("log.Server is required")
 	}
 	if log.Timeout == 0 {
-		log.Timeout = time.Duration(20*time.Second)
+		log.Timeout = time.Duration(10*time.Second)
 	}
 	if len(log.Host) == 0 {
 		log.Host, _ = os.Hostname()

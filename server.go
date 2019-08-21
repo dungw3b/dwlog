@@ -35,7 +35,7 @@ func (s *Server) Log(ctx context.Context, m *MessageRequest) (*MessageResponse, 
 
 	path := s.Data +"/"+ m.Name
 	if _, err := os.Stat(path); os.IsNotExist(err) {
-		os.Mkdir(path, 0644)
+		os.Mkdir(path, 0755)
 	}
 
 	writer := &FileWriter {
