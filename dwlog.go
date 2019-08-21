@@ -33,7 +33,7 @@ func (log *DWLog) Connect() error {
 		return fmt.Errorf("log.Server is required")
 	}
 	if log.Timeout == 0 {
-		log.Timeout = time.Duration(10*time.Second)
+		log.Timeout = time.Duration(5*time.Second)
 	}
 	if len(log.Host) == 0 {
 		log.Host, _ = os.Hostname()
@@ -66,9 +66,11 @@ func (log *DWLog) run() {
 				return
 			}
 			// push message
-			_, err := log.client.Log(context.Background(), message)
+			ctx := context.Background()
+			ctx, _ = context.WithTimeout(ctx, log.Timeout)
+			_, err := log.client.Log(ctx, message)
 			if err != nil {
-				fmt.Println(err)
+				fmt.Println("send message error or timeout", err)
 			}
 		}
 	}
