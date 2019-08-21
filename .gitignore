@@ -4,4 +4,4 @@
 *.dylib
 *.test
 *.out
-*.log
+example/data/*
