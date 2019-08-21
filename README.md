@@ -11,5 +11,7 @@ Build:
 Run:
 ---------------
 ```bash
+    $ cd example
+    $ mkdir example/data
     $ ./bin/dwlog-linux-amd64 -c conf/dwlog.json
 ```

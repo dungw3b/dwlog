@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	log := dwlog.DWLog {
+	log := &dwlog.DWLog {
 		Name: "test",
 		Server: "127.0.0.1:2701",
 	}
